@@ -8,10 +8,10 @@ package com.mycompany.mavenproject1;
  *
  * @author admin
  */
-public abstract class StewDecorator implements Decorator{
-    protected Decorator wrappedItem;
+public abstract class StewDecorator implements Dish{
+    private final Dish wrappedItem;
     
-    public StewDecorator(Decorator wrappedItem) {
+    public StewDecorator(Dish wrappedItem) {
         this.wrappedItem = wrappedItem;
     }
     

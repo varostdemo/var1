@@ -8,7 +8,7 @@ package com.mycompany.mavenproject1;
  *
  * @author admin
  */
-public class Stew implements Decorator{
+public class Stew implements Dish{
     private static final int defaultPrice = 50;
     private static final String defaultDescription = "Нордское рагу";
     

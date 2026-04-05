@@ -13,17 +13,17 @@ public class FireSauceDecorator extends StewDecorator {
     private static final int addPrice = 10;
     private static final String addName = "огненный соус";
     
-    public FireSauceDecorator(Decorator wrappedItem) {
+    public FireSauceDecorator(Dish wrappedItem) {
         super(wrappedItem);
     }
     
     @Override
     public String getDescription() {
-        return wrappedItem.getDescription() + " +" + addName;
+        return super.getDescription() + " +" + addName;
     }
     
     @Override
     public int getPrice() {
-        return wrappedItem.getPrice() + addPrice;
+        return super.getPrice() + addPrice;
     }
 }

@@ -13,17 +13,17 @@ public class NordStewDecorator extends StewDecorator {
     private static final int addPrice = 7;
     private static final String addName = "нордская лепешка";
     
-    public NordStewDecorator(Decorator wrappedItem) {
+    public NordStewDecorator(Dish wrappedItem) {
         super(wrappedItem);
     }
     
     @Override
     public String getDescription() {
-        return wrappedItem.getDescription() + " +" + addName;
+        return super.getDescription() + " +" + addName;
     }
     
     @Override
     public int getPrice() {
-        return wrappedItem.getPrice() + addPrice;
+        return super.getPrice() + addPrice;
     }
 }

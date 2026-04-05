@@ -55,10 +55,6 @@ public class OrderFrame extends JFrame {
         snowBerriesCheck = new JCheckBox("Снежные ягоды (+6 септимов)");
         nordStewCheck = new JCheckBox("Нордская лепешка (+7 септимов)");
         
-        fireSauceCheck.addActionListener(e -> maxSelections());
-        doubleMeatCheck.addActionListener(e -> maxSelections());
-        snowBerriesCheck.addActionListener(e -> maxSelections());
-        nordStewCheck.addActionListener(e -> maxSelections());
         
         addonsPanel.add(fireSauceCheck);
         addonsPanel.add(doubleMeatCheck);
@@ -97,28 +93,24 @@ public class OrderFrame extends JFrame {
         doubleMeatCheck.addActionListener(e -> updatePriceDisplay());
         snowBerriesCheck.addActionListener(e -> updatePriceDisplay());
         nordStewCheck.addActionListener(e -> updatePriceDisplay());
-    }
-    
-    private void maxSelections() {
-        int selectedCount = getSelectedCount();
-        if (selectedCount > 3) {
-            JOptionPane.showMessageDialog(this, 
-                "Нельзя выбрать более 3 добавок!", 
-                "Предупреждение", 
-                JOptionPane.WARNING_MESSAGE);
-            
-            if (fireSauceCheck.isSelected() && selectedCount > 3) {
-                fireSauceCheck.setSelected(false);
-            } else if (doubleMeatCheck.isSelected() && selectedCount > 3) {
-                doubleMeatCheck.setSelected(false);
-            } else if (snowBerriesCheck.isSelected() && selectedCount > 3) {
-                snowBerriesCheck.setSelected(false);
-            } else if (nordStewCheck.isSelected() && selectedCount > 3) {
-                nordStewCheck.setSelected(false);
-            }
+        
+        JCheckBox[] checkBoxes = {fireSauceCheck, doubleMeatCheck, snowBerriesCheck, nordStewCheck};
+
+        for (JCheckBox checkBox : checkBoxes) {
+            checkBox.addActionListener(e -> {
+                if (checkBox.isSelected() && getSelectedCount() > 3) {
+                    checkBox.setSelected(false);
+                    JOptionPane.showMessageDialog(this, 
+                        "Нельзя выбрать более 3 добавок!", 
+                        "Предупреждение", 
+                        JOptionPane.WARNING_MESSAGE);
+                } else {
+                    updatePriceDisplay();
+                }
+            });
         }
     }
-    
+      
     private int getSelectedCount() {
         int count = 0;
         if (fireSauceCheck.isSelected()) count++;
@@ -129,12 +121,12 @@ public class OrderFrame extends JFrame {
     }
     
     private void updatePriceDisplay() {
-        Decorator order = buildOrderItem();
+        Dish order = buildOrderItem();
         priceLabel.setText("Итого: " + order.getPrice() + " септимов");
     }
     
-    private Decorator buildOrderItem() {
-        Decorator order = new Stew();
+    private Dish buildOrderItem() {
+        Dish order = new Stew();
         
         if (fireSauceCheck.isSelected()) {
             order = new FireSauceDecorator(order);
@@ -153,7 +145,7 @@ public class OrderFrame extends JFrame {
     }
     
     private void createOrder() {
-        Decorator order = buildOrderItem();
+        Dish order = buildOrderItem();
         
         int price = order.getPrice();
         String description = order.getDescription();

@@ -8,7 +8,7 @@ package com.mycompany.mavenproject1;
  *
  * @author admin
  */
-public interface Decorator {
+public interface Dish {
     String getDescription();
     int getPrice();
 }
