@@ -112,11 +112,13 @@ public class OrderFrame extends JFrame {
     }
       
     private int getSelectedCount() {
+            JCheckBox[] checkBoxes = {fireSauceCheck, doubleMeatCheck, snowBerriesCheck, nordStewCheck};
         int count = 0;
-        if (fireSauceCheck.isSelected()) count++;
-        if (doubleMeatCheck.isSelected()) count++;
-        if (snowBerriesCheck.isSelected()) count++;
-        if (nordStewCheck.isSelected()) count++;
+        for (JCheckBox cb : checkBoxes) {
+            if (cb.isSelected()) {
+                count++;
+            }
+        }
         return count;
     }
     
@@ -138,7 +140,7 @@ public class OrderFrame extends JFrame {
             order = new SnowBerriesDecorator(order);
         }
         if (nordStewCheck.isSelected()) {
-            order = new NordStewDecorator(order);
+            order = new NordBreadDecorator(order);
         }
         
         return order;
