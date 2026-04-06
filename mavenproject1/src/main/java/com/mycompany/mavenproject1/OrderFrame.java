@@ -25,7 +25,7 @@ public class OrderFrame extends JFrame {
     private JCheckBox fireSauceCheck;
     private JCheckBox doubleMeatCheck;
     private JCheckBox snowBerriesCheck;
-    private JCheckBox nordStewCheck;
+    private JCheckBox nordBreadcheck;
     private JLabel priceLabel;
     private JTable historyTable;
     
@@ -53,13 +53,13 @@ public class OrderFrame extends JFrame {
         fireSauceCheck = new JCheckBox("Огненный соус (+10 септимов)");
         doubleMeatCheck = new JCheckBox("Двойная порция оленины (+20 септимов)");
         snowBerriesCheck = new JCheckBox("Снежные ягоды (+6 септимов)");
-        nordStewCheck = new JCheckBox("Нордская лепешка (+7 септимов)");
+        nordBreadcheck = new JCheckBox("Нордская лепешка (+7 септимов)");
         
         
         addonsPanel.add(fireSauceCheck);
         addonsPanel.add(doubleMeatCheck);
         addonsPanel.add(snowBerriesCheck);
-        addonsPanel.add(nordStewCheck);
+        addonsPanel.add(nordBreadcheck);
         
         JPanel bottomPanel = new JPanel(new BorderLayout(10, 10));
         
@@ -92,9 +92,9 @@ public class OrderFrame extends JFrame {
         fireSauceCheck.addActionListener(e -> updatePriceDisplay());
         doubleMeatCheck.addActionListener(e -> updatePriceDisplay());
         snowBerriesCheck.addActionListener(e -> updatePriceDisplay());
-        nordStewCheck.addActionListener(e -> updatePriceDisplay());
+        nordBreadcheck.addActionListener(e -> updatePriceDisplay());
         
-        JCheckBox[] checkBoxes = {fireSauceCheck, doubleMeatCheck, snowBerriesCheck, nordStewCheck};
+        JCheckBox[] checkBoxes = {fireSauceCheck, doubleMeatCheck, snowBerriesCheck, nordBreadcheck};
 
         for (JCheckBox checkBox : checkBoxes) {
             checkBox.addActionListener(e -> {
@@ -112,7 +112,7 @@ public class OrderFrame extends JFrame {
     }
       
     private int getSelectedCount() {
-            JCheckBox[] checkBoxes = {fireSauceCheck, doubleMeatCheck, snowBerriesCheck, nordStewCheck};
+            JCheckBox[] checkBoxes = {fireSauceCheck, doubleMeatCheck, snowBerriesCheck, nordBreadcheck};
         int count = 0;
         for (JCheckBox cb : checkBoxes) {
             if (cb.isSelected()) {
@@ -139,7 +139,7 @@ public class OrderFrame extends JFrame {
         if (snowBerriesCheck.isSelected()) {
             order = new SnowBerriesDecorator(order);
         }
-        if (nordStewCheck.isSelected()) {
+        if (nordBreadcheck.isSelected()) {
             order = new NordBreadDecorator(order);
         }
         
@@ -163,7 +163,7 @@ public class OrderFrame extends JFrame {
         fireSauceCheck.setSelected(false);
         doubleMeatCheck.setSelected(false);
         snowBerriesCheck.setSelected(false);
-        nordStewCheck.setSelected(false);
+        nordBreadcheck.setSelected(false);
         
         updatePriceDisplay();
     }
